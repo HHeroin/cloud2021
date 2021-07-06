@@ -3,11 +3,13 @@ package com.atguigu.springcloud.controller;
 import com.atguigu.springcloud.entity.CommonResult;
 import com.atguigu.springcloud.entity.Payment;
 import com.atguigu.springcloud.service.PaymentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 @RestController
+@Slf4j
 public class PaymentController {
 
     @Resource
@@ -15,6 +17,7 @@ public class PaymentController {
 
     @PostMapping("/payment/create")
     public CommonResult createPayment(@RequestBody Payment payment) {
+        log.info("create payment  1111 {}",payment );
         Integer result = paymentService.createPayment(payment);
         if (result > 0) {
             return new CommonResult(200,"创建成功");
