@@ -21,12 +21,12 @@ public class PaymentController {
 
     @PostMapping("/payment/create")
     public CommonResult createPayment(@RequestBody Payment payment) {
-        log.info("create payment  1111 {}", payment);
+        log.info("create payment  1111 {}",payment );
         Integer result = paymentService.createPayment(payment);
         if (result > 0) {
-            return new CommonResult(200, "创建成功" + SERVER_PORT);
+            return new CommonResult(200,"创建成功"+SERVER_PORT);
         } else {
-            return new CommonResult(300, "创建失败" + SERVER_PORT);
+            return new CommonResult(300,"创建失败"+SERVER_PORT);
         }
     }
 
@@ -34,9 +34,9 @@ public class PaymentController {
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (payment == null) {
-            return new CommonResult(300, "根据id查询失败" + SERVER_PORT);
+            return new CommonResult(300,"根据id查询失败"+SERVER_PORT);
         } else {
-            return new CommonResult(200, "查询成功" + SERVER_PORT, payment);
+            return new CommonResult(200,"查询成功"+SERVER_PORT,payment);
         }
     }
 
