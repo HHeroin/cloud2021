@@ -20,7 +20,7 @@ import java.util.List;
 public class OrderController {
 
     // private final String PAYMENT_SERVICE_URL = "http://localhost:8001";
-    private final String PAYMENT_SERVICE_URL = "http://cloud-payment-service";
+    private final String PAYMENT_SERVICE_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Autowired
     private RestTemplate restTemplate;
