@@ -1,5 +1,6 @@
 package com.atguigu.springcloud.controller;
 
+import cn.hutool.core.util.IdUtil;
 import com.atguigu.springcloud.entity.CommonResult;
 import com.atguigu.springcloud.entity.Payment;
 import com.atguigu.springcloud.service.PaymentService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -38,6 +40,17 @@ public class PaymentController {
         } else {
             return new CommonResult(200, "查询成功" + SERVER_PORT, payment);
         }
+    }
+
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+            log.info("mission completed!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return IdUtil.fastSimpleUUID();
     }
 
 }
