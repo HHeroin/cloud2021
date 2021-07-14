@@ -9,11 +9,18 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class PaymentService {
+    @HystrixCommand(fallbackMethod = "paymentOkFallback", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    })
     public String paymentOk() {
         return "线程池名称:" + Thread.currentThread().getName();
     }
 
-    @HystrixCommand(fallbackMethod = "paymentTimeoutFallback", commandProperties = {
+    public String paymentOkFallback() {
+        return "线程池名称:" + Thread.currentThread().getName() + "-fallback";
+    }
+
+        @HystrixCommand(fallbackMethod = "paymentTimeoutFallback", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     })
     public String paymentTimeout() {
