@@ -1,0 +1,33 @@
+
+server:
+  port: 9527
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: payment-getPayment
+          #uri: http://localhost:8001
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/get/**
+            #- After=2021-07-15T17:27:10.383+08:00[Asia/Shanghai]
+            #- Cookie=chocolate, ch.p
+            #- Header=X-Request-Id, \d+
+        - id: baidunew-guonei
+          uri: https://news.baidu.com
+          predicates:
+            - Path=/guonei
+      discovery:
+        locator:
+          enabled: true
+  application:
+    name: cloud-gateway-service
+
+eureka:
+  instance:
+    instance-id: cloud-gateway-service
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone:  http://eureka7001.com:7001/eureka
