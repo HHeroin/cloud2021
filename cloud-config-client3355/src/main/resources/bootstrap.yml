@@ -13,6 +13,12 @@ spring:
       name: config  #配置文件名称
       profile: dev  #读取后缀名称 http://localhost:3344/master/config-dev.yml
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 management:
   endpoints:
     web:
