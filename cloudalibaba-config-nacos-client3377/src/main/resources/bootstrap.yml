@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev,test
+  application:
+    name: config-nacos-client
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.114.131:8848
+        namespace: 2057fdb6-7e3e-4e5e-b84a-5355726989c2
+        group: test_group
+        file-extension: yaml
+
+server:
+  port: 3377
